@@ -1,8 +1,12 @@
+@use "abstracts";
+
 body {
   font-family: sans-serif;
   text-align: center;
   background: forestgreen;
+  font-size: abstracts.$font-main;
 }
+
 .red {
   color: red;
 }
