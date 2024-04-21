@@ -2,7 +2,7 @@ use leptos::*;
 use leptos_meta::*;
 use leptos_router::*;
 
-
+use crate::components::sections::Counter;
 use crate::pages::{Home, NotFound};
 
 #[component]
@@ -11,8 +11,6 @@ pub fn App() -> impl IntoView {
     provide_meta_context();
 
     view! {
-        // injects a stylesheet into the document <head>
-        // id=leptos means cargo-leptos will hot-reload this stylesheet
         <Stylesheet id="leptos" href="/pkg/leptos-actix-tut-1.css"/>
 
         // sets the document title
@@ -24,6 +22,7 @@ pub fn App() -> impl IntoView {
                 <Routes>
                     <Route path="" view=Home/>
                     <Route path="/*any" view=NotFound/>
+                    <Route path="/counter" view=Counter/>
                 </Routes>
             </main>
         </Router>
