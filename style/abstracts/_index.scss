@@ -1,4 +1,4 @@
-@forward 'variables';
-@forward 'media-query';
-@forward 'colors';
-@forward 'font_size' show $font_main, $font_header hide $font_general;
+@forward "variables";
+@forward "media_query";
+@forward "colors";
+@forward "font_size" show $font_main, $font_header;

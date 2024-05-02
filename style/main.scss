@@ -1,12 +1,51 @@
 @use "abstracts";
+html {
+  --s: 6px; /* control the size */
+
+  --g: #ffffff00 66%, #1205230a 68% 98%, #eb0e0e00;
+  background: radial-gradient(30% 30% at 0% 30%, var(--g)) var(--s)
+      calc(9 * var(--s)),
+    radial-gradient(30% 30% at 100% 30%, var(--g)) var(--s) calc(-1 * var(--s)),
+    radial-gradient(30% 30% at 30% 100%, var(--g)) calc(10 * var(--s)) 0,
+    radial-gradient(30% 30% at 30% 0%, var(--g)) #1343fe;
+  background-size: calc(20 * var(--s)) calc(20 * var(--s));
+}
 
 body {
   font-family: sans-serif;
   text-align: center;
-  background: forestgreen;
+  // background: forestgreen;
   font-size: abstracts.$font-main;
 }
 
 .red {
   color: red;
+}
+
+.ribbon {
+  margin: 0 auto;
+  color: white;
+  width: 250px;
+  --c: #d81a14;
+  --c-darker: color-mix(in srgb, var(--c), #000 40%);
+  --r: 10px;
+  padding-inline: calc(0.2em + var(--r));
+  text-align: center;
+  line-height: 1.9;
+  background-image: linear-gradient(var(--c) 80%, #00000000 0),
+    linear-gradient(to bottom left, #0000 50%, var(--c-darker) 0 85%, #0000 0);
+
+  background-position: 0 0.1lh;
+  background-size: 100% 1lh;
+
+  clip-path: polygon(
+    0 0.1lh,
+    100% 0.1lh,
+    calc(100% - var(--r)) 0.5lh,
+    100% 0.9lh,
+    100% calc(100% - 0.1lh),
+    0 calc(100% - 0.1lh),
+    var(--r) calc(100% - 0.5lh),
+    0 calc(100% - 0.9lh)
+  );
 }

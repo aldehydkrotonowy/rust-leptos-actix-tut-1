@@ -2,8 +2,8 @@ use leptos::*;
 use leptos_meta::*;
 use leptos_router::*;
 
-use crate::components::sections::Counter;
-use crate::pages::{Home, NotFound};
+
+use crate::pages::{Home, NotFound, TodoList};
 
 #[component]
 pub fn App() -> impl IntoView {
@@ -20,9 +20,9 @@ pub fn App() -> impl IntoView {
         <Router>
             <main>
                 <Routes>
+                    <Route path="/todolist" view=TodoList/>
                     <Route path="" view=Home/>
                     <Route path="/*any" view=NotFound/>
-                    <Route path="/counter" view=Counter/>
                 </Routes>
             </main>
         </Router>
