@@ -1,3 +1,5 @@
+use leptos::ev::SubmitEvent;
+use leptos::html::Input;
 use leptos::*;
 
 use crate::components::aggregates::{TodoItem, Todo_Item};
@@ -28,6 +30,24 @@ pub fn TodoList() -> impl IntoView {
         },
     ]);
 
+    let todo_input_ref: NodeRef<Input> = create_node_ref();
+
+    let last_todo_id = move || todo_items().iter().map(|todo| todo.id).max();
+
+    let on_submit_handler = move |ev: SubmitEvent| {
+        ev.prevent_default();
+
+        let mut new_todo_items = todo_items();
+        let todo_id = last_todo_id().unwrap_or_default() + 1;
+
+        new_todo_items.push(TodoItem {
+            id: todo_id,
+            task: todo_input_ref().expect("<input> to exist").value(),
+            status: false,
+        });
+        set_todo_items.set(new_todo_items);
+    };
+
     let delete_todo_item = move |todo_id: i16| {
         set_todo_items
             .update(move |todo_items| todo_items.retain(|todo_item| todo_item.id != todo_id))
@@ -36,12 +56,13 @@ pub fn TodoList() -> impl IntoView {
         <Todo_Wrapper>
             <div class="flex flex-col rounded mb-20 text-black">
                 <h2 class="text-2xl font-medium mb-4">"Add Task"</h2>
-                <form class="w-full flex flex-col">
+                <form on:submit=on_submit_handler class="w-full flex flex-col">
                     <div class="flex items-center justify-between">
                         <input
                             class="w-2/3 px-2 py-1 border-b-2 border-black focus:outline-none"
                             type="text"
                             placeholder="Add new task"
+                            node_ref=todo_input_ref
                         />
                         <input class="hover:cursor-pointer" type="submit" value="Submit"/>
                     </div>
