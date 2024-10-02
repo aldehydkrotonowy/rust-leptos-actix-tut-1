@@ -1,3 +1,7 @@
+pub mod app;
+pub mod components;
+pub mod pages;
+
 #[cfg(feature = "ssr")]
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {

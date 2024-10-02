@@ -70,3 +70,37 @@ This may be useful for integrating external tools which require a static site, e
 ## Licensing
 
 This template itself is released under the Unlicense. You should replace the LICENSE for your own application with an appropriate license if you plan to release it publicly.
+
+
+# rust modules
+
+```
+src
+    utils
+        bar.rs
+        foo.rs
+    main.rs
+```
+At this point, the compiler doesn't know about **src/utils/foo.rs** and **src/utils/bar.rs**.
+
+First, you must expose **src/utils/**. As seen above, you have 2 options:
+
+add the file: **src/utils/mod.rs**
+add the file **src/utils.rs** (named exactly like the folder, without the extension)
+Now, relative to the src folder (aka the crate level), a module named utils is available.
+
+Second, you must expose the files **src/utils/foo.rs** and **src/utils/bar.rs**.
+
+To do that, the utils module must declare 2 new submodules named after these files. So the content of **src/utils/mod.rs** (or **src/utils.rs**) should be:
+
+```
+pub mod bar;
+pub mod foo;
+```
+Now whatever is public in those 2 files is available in other modules! 🎉
+And you may write the following in src/main.rs:
+
+```
+mod utils;
+use utils::{foo, bar};
+```

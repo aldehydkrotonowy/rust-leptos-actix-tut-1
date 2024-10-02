@@ -54,33 +54,43 @@ pub fn TodoList() -> impl IntoView {
     };
     view! {
         <Todo_Wrapper>
-            <div class="flex flex-col rounded mb-20 text-black">
-                <h2 class="text-2xl font-medium mb-4">"Add Task"</h2>
-                <form on:submit=on_submit_handler class="w-full flex flex-col">
-                    <div class="flex items-center justify-between">
+            <div class="flex flex-col mb-20 text-black rounded">
+                <h2 class="mb-4 text-2xl font-medium">"Add Task"</h2>
+                <form on:submit=on_submit_handler class="flex flex-col w-full">
+                    <div class="flex justify-between items-center">
                         <input
-                            class="w-2/3 px-2 py-1 border-b-2 border-black focus:outline-none"
+                            class="py-1 px-2 w-2/3 border-b-2 border-black focus:outline-none"
                             type="text"
                             placeholder="Add new task"
                             node_ref=todo_input_ref
                         />
-                        <input class="hover:cursor-pointer" type="submit" value="Submit"/>
+                        <input
+                            class="hover:cursor-pointer"
+                            type="submit"
+                            value="Submit"
+                        />
                     </div>
                 </form>
             </div>
             <div class="h-screen">
-                <div class="pt-20 mb-10 mx-auto px-5 w-full lg:px-0 lg:max-w-[90ch]">
+                <div class="px-5 pt-20 mx-auto mb-10 w-full lg:px-0 lg:max-w-[90ch]">
                     <For
                         // or just todo_items, both works
                         each=move || todo_items.get()
                         key=|task| task.id
                         children=move |task: TodoItem| {
-                            view! { <Todo_Item delete_callback=delete_todo_item todo_item=task/> }
+                            view! {
+                                <Todo_Item
+                                    delete_callback=delete_todo_item
+                                    todo_item=task
+                                />
+                            }
                         }
                     />
 
                 </div>
             </div>
+        // <Post />
         </Todo_Wrapper>
     }
 }

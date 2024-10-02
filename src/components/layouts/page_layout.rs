@@ -4,9 +4,9 @@ use leptos::*;
 #[component]
 pub fn Page_Layout() -> impl IntoView {
     view! {
-        <Header/>
+        <Header />
         <div>
-            <Counter/>
+            <Counter />
         </div>
         <div>footer</div>
     }

@@ -2,8 +2,7 @@ use leptos::*;
 use leptos_meta::*;
 use leptos_router::*;
 
-
-use crate::pages::{Home, NotFound, TodoList};
+use super::pages::{Home, NotFound, TodoList};
 
 #[component]
 pub fn App() -> impl IntoView {
@@ -11,18 +10,18 @@ pub fn App() -> impl IntoView {
     provide_meta_context();
 
     view! {
-        <Stylesheet id="leptos" href="/pkg/leptos-actix-tut-1.css"/>
+        <Stylesheet id="leptos" href="/pkg/leptos-actix-tut-1.css" />
 
         // sets the document title
-        <Title text="Welcome to Leptos"/>
+        <Title text="Welcome to Leptos" />
 
         // content for this welcome page
         <Router>
             <main>
                 <Routes>
-                    <Route path="/todolist" view=TodoList/>
-                    <Route path="" view=Home/>
-                    <Route path="/*any" view=NotFound/>
+                    <Route path="/todolist" view=TodoList />
+                    <Route path="" view=Home />
+                    <Route path="/*any" view=NotFound />
                 </Routes>
             </main>
         </Router>

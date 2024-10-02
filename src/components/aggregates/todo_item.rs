@@ -34,13 +34,13 @@ where
     view! {
         <div class="flex justify-between items-center">
             <span class=task_title_style>{todo_item.task}</span>
-            <div class="flex justify-between w-fit sm:w-1/3">
+            <div class="flex justify-between sm:w-1/3 w-fit">
                 <button on:click=on_click class=complete_button_style>
                     {move || if !status() { "Complete" } else { "Undo" }}
                 </button>
                 <button
                     on:click=move |_| delete_callback(todo_item.id)
-                    class="hover:cursor-pointer ml-4 sm:ml-0"
+                    class="ml-4 sm:ml-0 hover:cursor-pointer"
                 >
                     "Delete"
                 </button>
