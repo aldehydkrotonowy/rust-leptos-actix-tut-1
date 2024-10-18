@@ -1120,6 +1120,7 @@ dependencies = [
  "leptos_actix",
  "leptos_meta",
  "leptos_router",
+ "serde",
  "thiserror",
  "wasm-bindgen",
 ]
